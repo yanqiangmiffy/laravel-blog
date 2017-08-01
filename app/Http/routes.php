@@ -34,4 +34,5 @@ Route::group(['middleware'=>['admin.login'],'prefix'=>'admin','namespace'=>'Admi
     Route::get('quit','LoginController@quit');//info页面
     Route::any('pass','IndexController@pass');//修改密码页面
     Route::resource('category','CategoryController');//info页面
+    Route::resource('cate/changeOrder','CategoryController@changeOrder');//修改分类
 });
