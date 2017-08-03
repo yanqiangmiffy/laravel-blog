@@ -12,8 +12,10 @@
 */
 
 
-
-//Route::get('/test','IndexController@index');
+//博客前台路由
+Route::get('/','Home\IndexController@index');
+Route::get('/cate','Home\IndexController@cate');
+Route::get('/article','Home\IndexController@article');
 
 //Route::get('admin/getcode','Admin\LoginController@getcode');
 //Route::get('admin/crypt','Admin\LoginController@crypt');
@@ -33,10 +35,16 @@ Route::group(['middleware'=>['admin.login'],'prefix'=>'admin','namespace'=>'Admi
     Route::get('info','IndexController@info');//info页面
     Route::get('quit','LoginController@quit');//info页面
     Route::any('pass','IndexController@pass');//修改密码页面
-    Route::resource('category','CategoryController');//info页面
-    Route::post('cate/changeOrder','CategoryController@changeOrder');//修改分类
+    Route::resource('category','CategoryController');//分类资源路由
+    Route::post('cate/changeOrder','CategoryController@changeOrder');//修改分类排序
 
-    Route::resource('article','ArticleController');//info页面
-    Route::any('upload','CommonController@upload');//修改密码页面
+    Route::resource('article','ArticleController');//文章资源路由
+    Route::any('upload','CommonController@upload');//文件上传路由
+
+    Route::resource('links','LinksController');//友情链接资源路由
+    Route::post('link/changeOrder','LinksController@changeOrder');//修改友情链接排序
+
+    Route::resource('navs','NavsController');//友情链接资源路由
+    Route::post('nav/changeOrder','NavsController@changeOrder');//修改友情链接排序
 
 });
