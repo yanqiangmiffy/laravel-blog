@@ -1,8 +1,8 @@
 ﻿@extends('layouts.home')
 @section('info')
-    <title>后盾个人博客</title>
-    <meta name="keywords" content="个人博客模板,博客模板"/>
-    <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。"/>
+    <title></title>
+    <meta name="keywords" content="{{config('web.keywords')}}"/>
+    <meta name="description" content="{{config('web.description')}}"/>
 @endsection
 @section('content')
     <div class="banner">
@@ -53,34 +53,7 @@
                         src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe>
             </div>
             <div class="news">
-                <h3>
-                    <p>最新<span>文章</span></p>
-                </h3>
-                <ul class="rank">
-                    @foreach($new as $key=>$value)
-                        <li><a href="{{url('art/'.$value->art_id)}}" title="Column 三栏布局 个人网站模板" target="_blank">{{$value->art_title}}</a></li>
-                    @endforeach
-                </ul>
-                <h3 class="ph">
-                    <p>点击<span>排行</span></p>
-                </h3>
-                <ul class="paih">
-                    @foreach($hot as $key=>$value)
-                        @if($key!=count($hot)-1)
-                            <li><a href="{{url('art/'.$value->art_id)}}" title="Column 三栏布局 个人网站模板" target="_blank">{{$value->art_title}}</a></li>
-                        @endif
-                    @endforeach
-
-                </ul>
-                <h3 class="links">
-                    <p>友情<span>链接</span></p>
-                </h3>
-                <ul class="website">
-                    @foreach($links as $key=>$value)
-                        <li><a href="{{$value->link_url}}" target="_blank">{{$value->link_name}}</a></li>
-
-                    @endforeach
-                </ul>
+              @parent
             </div>
             <!-- Baidu Button BEGIN -->
             <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a

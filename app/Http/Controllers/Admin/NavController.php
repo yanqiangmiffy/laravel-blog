@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
-
-class NavsController extends CommonController
+use Illuminate\Support\Facades\Validator;
+class NavController extends CommonController
 {
     //get admin/Navs  导航列表
     public function index()
@@ -60,7 +60,7 @@ class NavsController extends CommonController
             'nav_name.required' => '导航名称不能为空!',
             'nav_url.required' => '导航url不能为空!',
         ];
-        $validator = \Validator::make($input, $rules, $message);
+        $validator =Validator::make($input, $rules, $message);
         if ($validator->passes()) {
             $re = Navs::create($input);
             if ($re) {

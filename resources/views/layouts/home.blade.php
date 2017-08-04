@@ -15,14 +15,41 @@
 <header>
     <div id="logo"><a href="{{url('/')}}"></a></div>
     <nav class="topnav" id="topnav">
-        @foreach($data as $key=>$value)<a href="{{$value->nav_url}}"><span>{{$value->nav_name}}</span><span class="en">{{$value->nav_alias}}</span></a>@endforeach
-
+        @foreach($navs as $key=>$value)<a href="{{$value->nav_url}}"><span>{{$value->nav_name}}</span><span class="en">{{$value->nav_alias}}</span></a>@endforeach
     </nav>
 </header>
-@yield('content')
+@section('content')
+    <h3>
+        <p>最新<span>文章</span></p>
+    </h3>
+    <ul class="rank">
+        @foreach($new as $key=>$value)
+            <li><a href="{{url('art/'.$value->art_id)}}" title="Column 三栏布局 个人网站模板" target="_blank">{{$value->art_title}}</a></li>
+        @endforeach
+    </ul>
+    <h3 class="ph">
+        <p>点击<span>排行</span></p>
+    </h3>
+    <ul class="paih">
+        @foreach($hot as $key=>$value)
+            @if($key!=count($hot)-1)
+                <li><a href="{{url('art/'.$value->art_id)}}" title="Column 三栏布局 个人网站模板" target="_blank">{{$value->art_title}}</a></li>
+            @endif
+        @endforeach
+
+    </ul>
+    <h3 class="links">
+        <p>友情<span>链接</span></p>
+    </h3>
+    <ul class="website">
+        @foreach($links as $key=>$value)
+            <li><a href="{{$value->link_url}}" target="_blank">{{$value->link_name}}</a></li>
+
+        @endforeach
+    </ul>
+@show
 <footer>
-    <p>Design by 后盾网 <a href="http://www.miitbeian.gov.cn/" target="_blank">http://www.houdunwang.com</a> <a
-                href="/">网站统计</a></p>
+    <p>{!! config('web.copyright') !!}<a href="/">{{config('web.web_count')}}</a></p>
 </footer>
 </body>
 </html>

@@ -14,8 +14,8 @@
 
 //博客前台路由
 Route::get('/','Home\IndexController@index');
-Route::get('/cate','Home\IndexController@cate');
-Route::get('/article','Home\IndexController@article');
+Route::get('/cate/{cate_id}','Home\IndexController@cate');
+Route::get('/art/{art_id}','Home\IndexController@article');
 
 //Route::get('admin/getcode','Admin\LoginController@getcode');
 //Route::get('admin/crypt','Admin\LoginController@crypt');
@@ -44,7 +44,12 @@ Route::group(['middleware'=>['admin.login'],'prefix'=>'admin','namespace'=>'Admi
     Route::resource('links','LinksController');//友情链接资源路由
     Route::post('link/changeOrder','LinksController@changeOrder');//修改友情链接排序
 
-    Route::resource('navs','NavsController');//友情链接资源路由
-    Route::post('nav/changeOrder','NavsController@changeOrder');//修改友情链接排序
+    Route::resource('navs','NavController');//自定义导航资源路由
+    Route::post('nav/changeOrder','NavController@changeOrder');//修改自定义导航排序
+
+    Route::get('config/putFile','ConfigController@putFile');//修改配置项内容
+    Route::resource('config','ConfigController');//配置项资源路由
+    Route::post('config/changeOrder','ConfigController@changeOrder');//修改配置项排序
+    Route::post('config/changeContent','ConfigController@changeContent');//修改配置项内容
 
 });
